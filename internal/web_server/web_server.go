@@ -2,7 +2,7 @@ package webserver
 
 import (
 	"html/template"
-	types "my-pubsub-app/utils"
+	"my-pubsub-app/types"
 	"net/http"
 )
 

@@ -1,30 +1,28 @@
 package pubsub
 
 import (
-	types "my-pubsub-app/utils"
-	"sync"
+	"my-pubsub-app/types"
 )
 
 type PubSub struct {
-	subscribers []chan types.User
-	mu          sync.Mutex
+	types.PubSub
 }
 
 func (ps *PubSub) Publish(user types.User) {
-	ps.mu.Lock()
-	defer ps.mu.Unlock()
+	ps.Mu.Lock()
+	defer ps.Mu.Unlock()
 
-	for _, subscriber := range ps.subscribers {
+	for _, subscriber := range ps.Subscribers {
 		subscriber <- user
 	}
 }
 
 func (ps *PubSub) Subscribe() <-chan types.User {
-	ps.mu.Lock()
-	defer ps.mu.Unlock()
+	ps.Mu.Lock()
+	defer ps.Mu.Unlock()
 
 	ch := make(chan types.User, 1)
-	ps.subscribers = append(ps.subscribers, ch)
+	ps.Subscribers = append(ps.Subscribers, ch)
 	return ch
 }
 

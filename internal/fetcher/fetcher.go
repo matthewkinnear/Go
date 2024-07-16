@@ -3,7 +3,7 @@ package fetcher
 import (
 	"encoding/json"
 	"errors"
-	types "my-pubsub-app/utils"
+	"my-pubsub-app/types"
 	"net/http"
 )
 
